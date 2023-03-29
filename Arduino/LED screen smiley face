@@ -1,0 +1,31 @@
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define OLED_RESET 4
+Adafruit_SSD1306 display(OLED_RESET);
+
+void setup() {
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.clearDisplay();
+}
+
+void loop() {
+  display.clearDisplay();
+  display.drawCircle(32, 24, 20, WHITE);
+  
+  // Blink eyes
+  for (int i = 0; i < 3; i++) {
+    display.fillCircle(22, 18, 4, BLACK);
+    display.fillCircle(42, 18, 4, BLACK);
+    display.display();
+    delay(150);
+    display.fillCircle(22, 18, 4, WHITE);
+    display.fillCircle(42, 18, 4, WHITE);
+    display.display();
+    delay(150);
+  }
+  
+  display.drawArc(32, 32, 16, 12, 190, 350, WHITE);
+  display.display();
+  delay(1000);
+}
